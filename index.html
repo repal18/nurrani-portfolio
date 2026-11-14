@@ -1,0 +1,1165 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#dceeff">
+<title>Nurrani.exe — Little Engineer's Universe</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+ --blue:#73a6cf;
+ --blue2:#394b5a;
+ --blue3:#eaf6ff;
+ --navy:#344f75;
+ --ink:#4a6383;
+ --muted:#8ba6c3;
+ --pink:#ffc5d9;
+ --white:#b7b6ee;
+ --panel:rgba(255,255,255,.78);
+ --line:rgba(113,166,214,.22);
+ --shadow:0 15px 45px rgba(103,153,202,.13);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;
+ background:
+ radial-gradient(ellipse at 10% 5%,#fff 0,transparent 35%),
+ radial-gradient(ellipse at 90% 40%,#d2ebff 0,transparent 38%),
+ #eaf5ff;
+ color:var(--navy);
+ font-family:Nunito,sans-serif;
+ overflow-x:hidden;
+}
+button{font:inherit;color:inherit}
+button:focus-visible{outline:3px solid #75b7f1;outline-offset:3px}
+::selection{background:#c3e6ff}
+.bg-decor{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+.cloud{
+ position:absolute;background:#fff9;border-radius:100px;
+ filter:blur(1px);height:55px;width:180px;
+ animation:cloud 28s linear infinite;
+}
+.cloud:before,.cloud:after{
+ content:"";position:absolute;background:inherit;border-radius:50%;
+}
+.cloud:before{width:75px;height:75px;left:25px;top:-30px}
+.cloud:after{width:90px;height:90px;right:25px;top:-40px}
+.cloud.one{top:18%;left:-200px}
+.cloud.two{top:70%;left:-300px;animation-delay:-14s;transform:scale(.7)}
+.sparkle{
+ position:absolute;color:#8dbce8;
+ animation:twinkle 3s ease-in-out infinite;
+}
+@keyframes cloud{to{transform:translateX(120vw)}}
+@keyframes twinkle{50%{opacity:.25;transform:scale(.7) rotate(20deg)}}
+.container{width:min(1100px,calc(100% - 36px));margin:auto}
+header{
+ position:sticky;top:0;z-index:20;
+ background:#f2f9ffdc;backdrop-filter:blur(15px);
+ border-bottom:1px solid var(--line);
+}
+.nav{
+ max-width:1100px;margin:auto;padding:14px 18px;
+ display:flex;justify-content:space-between;align-items:center;
+}
+.logo{font:700 22px Fredoka;color:#5489bf;letter-spacing:-1px}
+.logo span{color:#f39fbe}
+.nav-right{font-size:11px;font-weight:900;color:#77a4cc}
+.online{
+ display:inline-block;width:8px;height:8px;border-radius:50%;
+ background:#7fdbad;margin-right:6px;
+ box-shadow:0 0 9px #7fdbad;
+}
+.hero{padding:55px 0 35px}
+.hero-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:center}
+.kicker{
+ display:inline-block;padding:8px 13px;border-radius:30px;
+ background:#fff;border:1px solid var(--line);
+ font-size:10px;font-weight:900;letter-spacing:1px;color:#7ca9d1;
+}
+h1{
+ font:600 clamp(45px,7vw,78px)/.98 Fredoka;
+ color:#496b98;letter-spacing:-2px;margin:22px 0 15px;
+}
+h1 span{color:#81b9ed}
+.hero-copy p{color:#829bb7;line-height:1.9;font-size:14px;max-width:420px}
+.hero-copy strong{color:#e89ab8}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.pill{
+ background:#fff;border:1px solid var(--line);
+ padding:8px 12px;border-radius:30px;
+ font-size:10px;font-weight:900;color:#85a6c9;
+}
+.character-card{
+ position:relative;overflow:hidden;
+ background:linear-gradient(145deg,#d5edff,#f8fcff 60%,#ffeaf3);
+ border:2px solid #fff;border-radius:32px;
+ box-shadow:var(--shadow);
+ min-height:475px;
+}
+.character-card:before{
+ content:"";position:absolute;width:280px;height:280px;
+ border-radius:50%;background:#fff8;
+ top:70px;left:50%;transform:translateX(-50%);
+}
+.card-top{
+ position:absolute;top:17px;left:20px;right:20px;
+ display:flex;justify-content:space-between;z-index:2;
+ color:#7ba7ce;font-size:10px;font-weight:900;
+ letter-spacing:1px;
+}
+#character{width:100%;height:475px;display:block;position:relative;z-index:1}
+.bubble{
+ position:absolute;right:16px;top:55px;z-index:3;
+ max-width:170px;background:white;
+ border-radius:18px 18px 5px 18px;
+ padding:12px 15px;color:#718eae;
+ font-size:11px;font-weight:900;
+ box-shadow:0 7px 20px #80a8ce2c;
+ transform:rotate(2deg);
+}
+.bubble:after{
+ content:"";position:absolute;right:14px;bottom:-7px;
+ width:14px;height:14px;background:white;
+ transform:rotate(45deg);
+}
+.character-label{
+ position:absolute;bottom:16px;left:0;right:0;text-align:center;
+ color:#7ca5cd;font-size:10px;font-weight:900;letter-spacing:2px;
+ z-index:2;
+}
+.section{padding:48px 0}
+.section-head{text-align:center;margin-bottom:25px}
+.eyebrow{color:#83b0d7;font-size:10px;font-weight:900;letter-spacing:2px}
+h2{font:600 clamp(29px,4vw,43px) Fredoka;color:#52749d;margin:10px 0}
+.section-head p{font-size:12px;color:#91a8c1;line-height:1.8}
+.workspace{
+ display:grid;grid-template-columns:1fr 1fr;gap:16px;
+}
+.panel{
+ padding:22px;background:var(--panel);
+ border:1px solid #fff;border-radius:23px;
+ box-shadow:var(--shadow);
+}
+.panel h3{font:600 18px Fredoka;color:#6389b2;margin:0 0 7px}
+.panel p{font-size:11px;color:#94a9c0;line-height:1.7;margin:0 0 16px}
+.button-grid{display:flex;gap:8px;flex-wrap:wrap}
+.btn{
+ cursor:pointer;border:1px solid #d9eafa;
+ background:#fff;border-radius:13px;padding:10px 13px;
+ color:#7699bb;font-size:11px;font-weight:900;
+ transition:.2s;
+}
+.btn:hover{background:#eaf6ff;border-color:#9bcdf5;transform:translateY(-3px)}
+.btn:active{transform:scale(.96)}
+.btn.active{background:#dceeff;border-color:#8dbfea;color:#5289bd}
+.btn.pink:hover{background:#fff0f6;border-color:#f3bfd3}
+.sub-label{
+ font-size:9px;font-weight:900;letter-spacing:1.5px;
+ color:#a3bad2;margin:17px 0 9px;
+}
+.status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:15px}
+.stat{
+ padding:12px 8px;background:#f0f8ff;border-radius:13px;text-align:center;
+}
+.stat small{display:block;font-size:8px;letter-spacing:1px;color:#9bb1c8;font-weight:900}
+.stat strong{display:block;font:600 17px Fredoka;color:#6d9cc8;margin-top:4px}
+.terminal{
+ padding:13px;background:#edf6ff;border:1px solid #dcecf9;
+ border-radius:13px;min-height:105px;
+ color:#7295b9;font:10px/1.9 monospace;
+ overflow-wrap:anywhere;
+}
+.terminal div:before{content:"♡ ";color:#eaa5c2}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.fact{
+ background:#ffffffc9;border:1px solid #fff;border-radius:20px;
+ padding:20px;box-shadow:var(--shadow);
+}
+.fact .emoji{font-size:26px}
+.fact h3{font:600 16px Fredoka;color:#688eb6;margin:12px 0 7px}
+.fact p{font-size:11px;color:#91a8c0;line-height:1.8;margin:0}
+footer{
+ padding:25px 0 35px;text-align:center;
+ font-size:10px;color:#9bb2cb;font-weight:900;letter-spacing:1px;
+}
+.toast{
+ position:fixed;bottom:22px;left:50%;z-index:30;
+ transform:translate(-50%,25px);opacity:0;pointer-events:none;
+ padding:12px 18px;border-radius:30px;background:#fff;
+ color:#7098bf;font-size:11px;font-weight:900;
+ box-shadow:var(--shadow);transition:.25s;
+ white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){
+ .hero-grid{grid-template-columns:1fr}
+ .hero-copy{text-align:center}
+ .hero-copy p{margin-inline:auto}
+ .pills{justify-content:center}
+ .character-card{min-height:420px}
+ #character{height:420px}
+ .workspace{grid-template-columns:1fr}
+ .facts{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="bg-decor">
+ <div class="cloud one"></div><div class="cloud two"></div>
+ <span class="sparkle" style="top:12%;left:8%">✦</span>
+ <span class="sparkle" style="top:38%;right:8%">✧</span>
+ <span class="sparkle" style="top:78%;left:15%">♡</span>
+ <span class="sparkle" style="top:88%;right:12%">✦</span>
+</div>
+
+<header>
+ <nav class="nav">
+  <div class="logo">nurrani<span>.lucu banget anjirr</span> ♡</div>
+  <div class="nav-right"><i class="online"></i> MODE ON AKTIF DI NYALAKAN</div>
+ </nav>
+</header>
+
+<main>
+<section class="hero">
+ <div class="container hero-grid">
+  <div class="hero-copy">
+   <div class="kicker">Selamat Datang Welcome!</div>
+   <h1>Hii, I'm<br><span>Nurrani!</span></h1>
+   <p>
+    A little student with a big imagination, a curious mind,
+    and approximately <strong>999 unfinished ideas</strong>.
+    Welcome to my tiny universe!
+   </p>
+   <p>
+    Aku Sulawesi Selatan ingin belajar hal baru, mengeksplorasi teknologi,
+    dan mencari tahu dan tempe bagaimana bisa sesuatu bisa bekerja.
+    Kadang berhasil. Kadang error. Kadang pura-pura tidak melihat error. Kadang Kiding.
+   </p>
+   <div class="pills">
+    <span class="pill">♡ RASA PENASARAN</span>
+    <span class="pill">✦ JIWA KREATIFAN</span>
+    <span class="pill">⚙ DEMI MASA DEPAN</span>
+   </div>
+  </div>
+
+  <div class="character-card">
+   <div class="card-top"><span>MODEL JELEK 1 / MODE LOCK-IN</span><span>♡ 100%</span></div>
+   <div class="bubble" id="speech">Hiii! Aku Nurrani! Jangan lupa istirahat yaa ♡</div>
+   <canvas id="character"></canvas>
+   <div class="character-label">KHODAM NURRANI VERSI 6.7</div>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="container">
+  <div class="section-head">
+   <div class="eyebrow">1 / DAERAH KEKUASAAN PEMERINTAH</div>
+   <h2>Main Course / Hidangan Utama ♡</h2>
+   <p>Dia mahasiswi, bukan pegawai robot. Jadi jangan kasih 47 tugas sekaligus.</p>
+  </div>
+
+  <div class="workspace">
+   <div class="panel">
+    <h3>🎀 Fitur keren, tekan aja</h3>
+    <p>Kasih dia aktivitas. Lihat apa yang terjadi.</p>
+    <div class="button-grid" id="actions">
+     <button class="btn" data-action="wave">👋 Mode Friendly</button>
+     <button class="btn" data-action="dance">🪩 Dance Brazil</button>
+     <button class="btn" data-action="jump">⬆ Roket</button>
+     <button class="btn" data-action="shy">🙈 Malu Malu Kucing</button>
+     <button class="btn" data-action="angry">😤 NGAMBEK BANGET</button>
+     <button class="btn" data-action="laugh">🤣 Ngakak</button>
+     <button class="btn" data-action="study">📚 Mode Rajin</button>
+     <button class="btn" data-action="sleep">💤 Bobo Cantik</button>
+     <button class="btn" data-action="heart">💗 Te amo paldoo</button>
+     <button class="btn" data-action="spin">🌀 Puyeng</button>
+     <button class="btn" data-action="pose">📸 Pose Cantik</button>
+     <button class="btn" data-action="reset">↻ Reset</button>
+    </div>
+   </div>
+
+   <div class="panel">
+    <h3>🧸 Rak Outfit Mahal Syultan Dubai</h3>
+    <p>Outfit check! Dia punya hak untuk tampil kece saat kuliah.</p>
+    <div class="sub-label"> PILIHIN OUTFIT DIA</div>
+    <div class="button-grid" id="outfits">
+     <button class="btn active" data-outfit="campus">🎓 Ngampus</button>
+     <button class="btn" data-outfit="hoodie">🩵 Jubah Cool</button>
+     <button class="btn" data-outfit="formal">👔 Formalitas PDI</button>
+     <button class="btn" data-outfit="sleep">🌙 Baju Turu</button>
+     <button class="btn" data-outfit="lab">⚙ Aslab</button>
+    </div>
+    <div class="sub-label">ACCESSORIES</div>
+    <div class="button-grid" id="accessories">
+     <button class="btn active" data-accessory="none">Ga Apa Apa</button>
+     <button class="btn" data-accessory="bow">🎀 Bowtie</button>
+     <button class="btn" data-accessory="glasses">👓 Nerd Girl</button>
+     <button class="btn" data-accessory="headphone">🎧 Mode Gaming</button>
+     <button class="btn" data-accessory="crown">👑 Ratu Sulawesi</button>
+     <button class="btn" data-accessory="flower">🌼 Bunga Kejora</button>
+    </div>
+   </div>
+
+   <div class="panel">
+    <h3>🍪 Friendly meter</h3>
+    <p>Berikan perhatian. Dia sudah cukup stres dengan tugas kuliah fiktifnya.</p>
+    <div class="button-grid">
+     <button class="btn pink" data-action="pet">♡ Pat Pat Kepala</button>
+     <button class="btn pink" data-action="cookie">🍪 Kasih Cemilan</button>
+     <button class="btn pink" data-action="compliment">💌 Confess</button>
+     <button class="btn pink" data-action="gift">🎁 Surprise MF</button>
+    </div>
+    <div class="status-grid">
+     <div class="stat"><small>MOOD</small><strong id="mood">Happy</strong></div>
+     <div class="stat"><small>ENERGY</small><strong id="energy">100%</strong></div>
+     <div class="stat"><small>LOVE</small><strong id="love">0</strong></div>
+    </div>
+   </div>
+
+   <div class="panel">
+    <h3>💻 Tiny terminal</h3>
+    <p>Semua aktivitas tercatat. Termasuk saat dia tidak melakukan apa-apa.</p>
+    <div class="terminal" id="terminal" aria-live="polite">
+     <div>nurrani.exe initialized.</div>
+     <div>Loading cuteness modules...</div>
+     <div>All systems are happy ♡</div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="container">
+  <div class="section-head">
+   <div class="eyebrow">2 / MY PORTOFOLIO KECE ABIEZ</div>
+   <h2>What's inside my head?</h2>
+   <p>Mencari yang engga ada dibalik kode error, menguji kemampuan otak, dan sedikit gila.</p>
+  </div>
+  <div class="facts">
+   <article class="fact">
+    <div class="emoji">🧠</div>
+    <h3>Rasa Ingin Tahu Sekelas AI (asli itu)</h3>
+    <p>Selalu ingin tahu bagaimana sesuatu bekerja. Satu pertanyaan bisa berubah menjadi 12 tab browser.</p>
+   </article>
+   <article class="fact">
+    <div class="emoji">⚙️</div>
+    <h3>Puzzle Breaker Layaknya Albert Einstein</h3>
+    <p>Suka mengeksplorasi ide, mencoba hal baru, dan mencari solusi. Error bukan akhir cerita.</p>
+   </article>
+   <article class="fact">
+    <div class="emoji">🌷</div>
+    <h3>Berkembang Bertumbuh Bertabah Hati</h3>
+    <p>Masih belajar, masih berkembang, dan masih punya banyak hal yang ingin diwujudkan.</p>
+   </article>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ DIBUAT DENGAN CRAFTING TABLE, TEMA BIRU LAUT, DENGAN SEBUAH LITTLE BIT OF MAGIC SIHIR ♡
+ <br><br>© <span id="year"></span> NURRANI TRIYANI LUMAPPA
+</footer>
+<div class="toast" id="toast">Cute mode activated ♡</div>
+
+<script>
+/* =========================================
+   NURRANI CHARACTER ENGINE
+   A character drawn directly with Canvas 2D
+========================================= */
+const canvas=document.getElementById("character");
+const ctx=canvas.getContext("2d");
+const speech=document.getElementById("speech");
+const terminal=document.getElementById("terminal");
+const toast=document.getElementById("toast");
+
+let W=0,H=0,DPR=1;
+let time=0;
+let action="idle";
+let actionUntil=0;
+let outfit="campus";
+let accessory="none";
+let mood="Happy";
+let energy=100;
+let love=0;
+let cookies=0;
+let blink=0;
+let blinkTimer=0;
+let toastTimer;
+let particles=[];
+let pointer={x:0,y:0,active:false};
+let targetRotation=0;
+
+const messages={
+ wave:["HIIII! HALO KAMUU! ♡","Haii! Jangan lupa senyum!","Aku dipanggil? AKU DIPANGGIL?!"],
+ dance:["DANCE BREAK!! TUGAS BISA MENUNGGU.","Aku punya 2 kaki dan 0 rasa malu.","Tolong jangan rekam ini..."],
+ jump:["YIPPIEEE!","Gravitasi tidak bisa menghalangiku!","WOOHOO!"],
+ shy:["E-eh? Jangan dilihatin dong...","Aku jadi salting...","*menyembunyikan wajah*"],
+ angry:["Hmph! Aku sedang tidak mood.","Siapa yang menghabiskan cookie-ku?!","Aku tidak marah. Cuma... HMPH."],
+ laugh:["HAHAHAHA— aduh perutku.","Itu lucu banget?!","Aku tidak kuat WKWKWK."],
+ study:["Fokus. Fokus. FOKUS.","Satu halaman lagi... mungkin.","Belajar dulu, jadi jenius kemudian."],
+ sleep:["Zzz... lima menit lagi...","Aku sedang menghemat energi.","Jangan ganggu. Aku mimpi dapat A."],
+ heart:["Sending you a little heart! ♡","Kamu hebat hari ini!","Ini hati kecil buat kamu."],
+ spin:["WHEEEEE!","Aku sedang mencari arah hidup.","360 derajat kebingungan."],
+ pose:["Camera ready!","Tunggu, rambutku belum rapi!","Ini angle terbaikku."],
+ pet:["EHEHEHE. LAGI DONG.","Aku merasa disayangi!","*kepala bergoyang bahagia*"],
+ cookie:["COOKIE?! UNTUK AKU?!","Ini motivasi terbaik.","Aku cinta manusia yang memberi snack."],
+ compliment:["A-aku? Makasih yaaa!","Kamu juga keren!","Aku jadi malu..."],
+ gift:["HADIAH?! APA ISINYA?!","Ini hari terbaikku!","Aku akan menyimpannya baik-baik."]
+};
+
+function say(text){
+ speech.textContent=text;
+}
+
+function log(text){
+ const row=document.createElement("div");
+ row.textContent=text;
+ terminal.appendChild(row);
+ while(terminal.children.length>6)terminal.removeChild(terminal.firstChild);
+}
+
+function notify(text){
+ toast.textContent=text;
+ toast.classList.add("show");
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>toast.classList.remove("show"),1700);
+}
+
+function updateStats(){
+ document.getElementById("mood").textContent=mood;
+ document.getElementById("energy").textContent=energy+"%";
+ document.getElementById("love").textContent=love;
+}
+
+function randomMessage(type){
+ const list=messages[type]||["Beep boop!"];
+ return list[Math.floor(Math.random()*list.length)];
+}
+
+function actionDo(type){
+ action=type;
+ actionUntil=performance.now()+(
+  type==="dance"?3200:
+  type==="sleep"?5000:
+  type==="study"?4500:1900
+ );
+
+ if(type==="pet"){
+  love+=2;energy=Math.min(100,energy+4);mood="Loved";
+ }else if(type==="cookie"){
+  cookies++;energy=Math.min(100,energy+15);love++;mood="Full";
+ }else if(type==="compliment"){
+  love+=3;mood="Blushing";
+ }else if(type==="gift"){
+  love+=5;energy=Math.min(100,energy+10);mood="Excited";
+ }else if(type==="angry")mood="Grumpy";
+ else if(type==="sleep")mood="Sleepy";
+ else if(type==="study")mood="Focused";
+ else if(type==="shy")mood="Shy";
+ else if(type==="dance"||type==="laugh")mood="Excited";
+ else mood="Happy";
+
+ if(!["sleep","pet","cookie","compliment","gift"].includes(type)){
+  energy=Math.max(0,energy-2);
+ }
+
+ if(type==="reset"){
+  energy=100;mood="Happy";
+  action="idle";outfit="campus";accessory="none";
+  setActive("outfits","outfit","campus");
+  setActive("accessories","accessory","none");
+ }
+
+ say(randomMessage(type));
+ log("action > "+type+" // success");
+ updateStats();
+ notify("Nurrani: "+type+" ♡");
+}
+
+function setActive(container,key,value){
+ document.querySelectorAll("#"+container+" [data-"+key+"]").forEach(b=>{
+  b.classList.toggle("active",b.dataset[key]===value);
+ });
+}
+
+document.querySelectorAll("[data-action]").forEach(button=>{
+ button.addEventListener("click",()=>actionDo(button.dataset.action));
+});
+
+document.querySelectorAll("[data-outfit]").forEach(button=>{
+ button.addEventListener("click",()=>{
+  outfit=button.dataset.outfit;
+  setActive("outfits","outfit",outfit);
+  say("Outfit baru! Gimana? Cocok gaa? ♡");
+  log("wardrobe > "+outfit);
+  notify("Outfit changed ✦");
+ });
+});
+
+document.querySelectorAll("[data-accessory]").forEach(button=>{
+ button.addEventListener("click",()=>{
+  accessory=button.dataset.accessory;
+  setActive("accessories","accessory",accessory);
+  say(accessory==="none"?"Natural beauty. Hehehe.":"Aksesori baruuu! ✨");
+  log("accessory > "+accessory);
+  notify("Accessory equipped ♡");
+ });
+});
+
+/* Canvas utilities */
+function roundedRect(x,y,w,h,r,color){
+ ctx.fillStyle=color;
+ ctx.beginPath();
+ ctx.roundRect(x,y,w,h,r);
+ ctx.fill();
+}
+function ellipse(x,y,rx,ry,color){
+ ctx.fillStyle=color;
+ ctx.beginPath();
+ ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);
+ ctx.fill();
+}
+function line(x1,y1,x2,y2,color,width=3){
+ ctx.strokeStyle=color;ctx.lineWidth=width;
+ ctx.lineCap="round";
+ ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+}
+function circle(x,y,r,color){
+ ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+}
+
+/* Drawing is performed in a 400 x 500 coordinate space */
+function drawCharacter(){
+ ctx.save();
+
+ const now=performance.now();
+ const active=now<actionUntil;
+ const idleBob=Math.sin(time*2.3)*4;
+ let bob=idleBob,tilt=0,armWave=0,armUp=0,headTilt=0,legMove=0;
+
+ if(action==="dance"&&active){
+  bob=Math.abs(Math.sin(time*9))*18;
+  tilt=Math.sin(time*9)*.13;
+  armWave=Math.sin(time*12)*.5;
+  armUp=1;
+  legMove=Math.sin(time*9)*.25;
+ }
+ if(action==="jump"&&active)bob=-Math.sin((1-(actionUntil-now)/1900)*Math.PI)*40;
+ if(action==="wave"&&active)armWave=Math.sin(time*13)*.55;
+ if(action==="shy"&&active)headTilt=.17;
+ if(action==="angry"&&active){headTilt=-.12;tilt=-.08;}
+ if(action==="laugh"&&active){bob=Math.sin(time*15)*8;headTilt=.15;}
+ if(action==="sleep"&&active){bob=12;headTilt=.25;}
+ if(action==="study"&&active){headTilt=.17;}
+ if(action==="heart"&&active){armUp=1;armWave=.2;}
+ if(action==="spin"&&active)tilt=Math.sin(time*10)*.3;
+ if(action==="pet"&&active)headTilt=Math.sin(time*9)*.12;
+ if(action==="cookie"&&active)headTilt=-.1;
+ if(action==="pose"&&active){headTilt=-.13;armUp=.4;}
+
+ ctx.translate(0,bob);
+ ctx.rotate(tilt);
+
+ // Shadow
+ ellipse(0,175,80,12,"#8ab8df35");
+
+ // Floating decorative hearts
+ if(action==="heart"&&active){
+  drawHeart(-85,-115,.8,"#ff9fc4");
+  drawHeart(88,-130,.6,"#ff9fc4");
+  drawHeart(0,-180,.7,"#ff9fc4");
+ }
+ if(action==="compliment"&&active){
+  drawHeart(90,-145,.6,"#ff9fc4");
+  drawHeart(-90,-150,.5,"#ff9fc4");
+ }
+
+ // Legs and socks
+ const legY=110;
+ ctx.save();
+ ctx.translate(-27,legY);
+ ctx.rotate(legMove);
+ roundedRect(-12,0,24,55,10,"#f3c6d8");
+ roundedRect(-17,43,35,17,8,"#fff");
+ roundedRect(-20,53,43,18,9,"#9dcaf0");
+ circle(12,60,3,"#fff");
+ ctx.restore();
+
+ ctx.save();
+ ctx.translate(27,legY);
+ ctx.rotate(-legMove);
+ roundedRect(-12,0,24,55,10,"#f3c6d8");
+ roundedRect(-17,43,35,17,8,"#fff");
+ roundedRect(-20,53,43,18,9,"#9dcaf0");
+ circle(12,60,3,"#fff");
+ ctx.restore();
+
+ // Arms behind body
+ ctx.save();
+ ctx.translate(-65,12);
+ ctx.rotate(.3+armWave-(armUp*.8));
+ ellipse(0,22,13,35,"#f3c6d8");
+ circle(-1,51,12,"#ffe0d0");
+ ctx.restore();
+
+ ctx.save();
+ ctx.translate(65,12);
+ ctx.rotate(-.3-armWave+(armUp*.8));
+ ellipse(0,22,13,35,"#f3c6d8");
+ circle(1,51,12,"#ffe0d0");
+ ctx.restore();
+
+ // Outfit body
+ if(outfit==="lab"){
+  roundedRect(-58,-8,116,132,27,"#fff");
+  roundedRect(-12,3,24,110,5,"#d4eaff");
+  line(-36,18,-14,48,"#9bcdf5",3);
+  line(36,18,14,48,"#9bcdf5",3);
+  roundedRect(-36,20,23,29,5,"#dceeff");
+  circle(0,26,5,"#8cbce8");
+ }else if(outfit==="hoodie"){
+  roundedRect(-65,-12,130,132,30,"#a7d6fa");
+  roundedRect(-28,-8,56,37,18,"#d5edff");
+  line(-28,27,-16,58,"#78addb",3);
+  line(28,27,16,58,"#78addb",3);
+  roundedRect(-23,54,46,26,9,"#8bbce7");
+ }else if(outfit==="formal"){
+  roundedRect(-56,-9,112,125,24,"#fff");
+  // tie
+  ctx.fillStyle="#8ab8e8";
+  ctx.beginPath();ctx.moveTo(0,20);ctx.lineTo(-8,35);ctx.lineTo(0,91);ctx.lineTo(8,35);ctx.fill();
+  roundedRect(-8,-4,16,12,4,"#ffbed6");
+ }else if(outfit==="sleep"){
+  roundedRect(-61,-9,122,130,28,"#c6b9ed");
+  circle(-28,26,4,"#fff");circle(28,26,4,"#fff");
+  circle(0,62,5,"#fff");
+ }else{
+  roundedRect(-59,-9,118,126,25,"#a9d4f6");
+  roundedRect(-18,-5,36,20,8,"#fff");
+  line(-35,22,-20,47,"#fff",3);
+  line(35,22,20,47,"#fff",3);
+  roundedRect(-55,83,110,13,5,"#f7c7dc");
+ }
+
+ // Skirt
+ if(outfit!=="sleep"){
+  ctx.fillStyle=outfit==="formal"?"#92b7e2":outfit==="lab"?"#b8d7f2":outfit==="hoodie"?"#e5f3ff":"#f4c9dc";
+  ctx.beginPath();
+  ctx.moveTo(-43,94);ctx.lineTo(-56,143);
+  ctx.quadraticCurveTo(0,157,56,143);
+  ctx.lineTo(43,94);ctx.closePath();ctx.fill();
+  line(-48,111,48,111,"#ffffff9c",2);
+ }
+
+ // Neck
+ roundedRect(-13,-30,26,30,8,"#f4cbbd");
+
+ // Hair back and twin tails
+ ellipse(-62,-92,24,65,"#85aee0");
+ ellipse(62,-92,24,65,"#85aee0");
+ ellipse(-67,-47,17,32,"#91b9e9");
+ ellipse(67,-47,17,32,"#91b9e9");
+
+ // Head
+ ellipse(0,-95,66,76,"#ffe0d0");
+
+ // Hair cap
+ ctx.fillStyle="#86b1e5";
+ ctx.beginPath();
+ ctx.moveTo(-65,-106);
+ ctx.quadraticCurveTo(-75,-183,0,-176);
+ ctx.quadraticCurveTo(75,-180,65,-100);
+ ctx.quadraticCurveTo(42,-137,25,-133);
+ ctx.quadraticCurveTo(0,-105,-23,-132);
+ ctx.quadraticCurveTo(-44,-115,-65,-106);
+ ctx.fill();
+
+ // Bangs
+ ctx.fillStyle="#80a9dc";
+ ctx.beginPath();
+ ctx.moveTo(-60,-125);
+ ctx.quadraticCurveTo(-44,-158,-15,-139);
+ ctx.quadraticCurveTo(-2,-125,-11,-105);
+ ctx.quadraticCurveTo(-29,-121,-38,-102);
+ ctx.quadraticCurveTo(-53,-91,-60,-125);
+ ctx.fill();
+ ctx.beginPath();
+ ctx.moveTo(-9,-137);
+ ctx.quadraticCurveTo(15,-151,42,-129);
+ ctx.quadraticCurveTo(55,-114,49,-97);
+ ctx.quadraticCurveTo(29,-115,14,-104);
+ ctx.quadraticCurveTo(0,-114,-9,-137);
+ ctx.fill();
+
+ // Ears
+ ellipse(-65,-89,10,17,"#ffd4c9");
+ ellipse(65,-89,10,17,"#ffd4c9");
+
+ // Blush
+ ellipse(-40,-76,13,6,"#f7a9b8a0");
+ ellipse(40,-76,13,6,"#f7a9b8a0");
+
+ // Eyes and expressions
+ const eyesClosed=(now<actionUntil&&action==="sleep")||
+  (now<actionUntil&&action==="shy");
+ const angry=now<actionUntil&&action==="angry";
+ const laughing=now<actionUntil&&action==="laugh";
+
+ if(eyesClosed||laughing){
+  line(-31,-93,-18,-93,"#536f91",3);
+  line(18,-93,31,-93,"#536f91",3);
+ }else{
+  // Left eye
+  ellipse(-25,-93,9,14,"#536f91");
+  ellipse(25,-93,9,14,"#536f91");
+  circle(-27,-98,3,"#fff");
+  circle(23,-98,3,"#fff");
+  if(angry){
+   line(-38,-111,-17,-106,"#536f91",3);
+   line(17,-106,38,-111,"#536f91",3);
+  }
+ }
+
+ circle(0,-18000,2,"#eaa6a2");
+ if(angry){
+  line(-6,-60,6,-60,"#b76f82",3);
+ }else if(laughing){
+  ellipse(0,-63,20,6,"#b76f82");
+ }else{
+  ctx.strokeStyle="#b76f82";ctx.lineWidth=2.5;
+  ctx.beginPath();ctx.arc(0,-63,6,0,Math.PI);ctx.stroke();
+ }
+
+ for(const side of [-1,1]){
+  circle(side*65,-119,10,"#f5aac9");
+  circle(side*65,-119,5,"#fff");
+ }
+
+ if(accessory==="bow"){
+  drawBow(-40,-157);
+ }else if(accessory==="glasses"){
+  ctx.strokeStyle="#7798bd";ctx.lineWidth=3;
+  ctx.beginPath();ctx.arc(-25,-94,16,0,Math.PI*2);
+  ctx.arc(25,-94,16,0,Math.PI*2);
+  ctx.moveTo(-9,-94);ctx.lineTo(9,-94);ctx.stroke();
+ }else if(accessory==="headphone"){
+  ctx.strokeStyle="#8bb8e5";ctx.lineWidth=9;
+  ctx.beginPath();ctx.arc(0,-105,74,Math.PI,Math.PI*2);ctx.stroke();
+  roundedRect(-78,-105,18,38,8,"#a6d4f7");
+  roundedRect(60,-105,18,38,8,"#a6d4f7");
+ }else if(accessory==="crown"){
+  ctx.fillStyle="#f8d17f";
+  ctx.beginPath();ctx.moveTo(-30,-163);ctx.lineTo(-26,-187);
+  ctx.lineTo(-8,-171);ctx.lineTo(0,-194);
+  ctx.lineTo(10,-171);ctx.lineTo(29,-187);
+  ctx.lineTo(30,-163);ctx.closePath();ctx.fill();
+  line(-30,-163,30,-163,"#e9b95e",4);
+ }else if(accessory==="flower"){
+  for(let i=0;i<5;i++){
+   const a=i*Math.PI*2/5;
+   circle(-40+Math.cos(a)*9,-154+Math.sin(a)*9,7,"#ffbed6");
+  }
+  circle(-40,-154,5,"#ffe58d");
+ }
+
+ circle(-72,-89,8,"#a8dcff");
+ circle(-72,-89,3,"#fff");
+
+ if(outfit==="campus"||outfit==="lab"){
+  roundedRect(48,18,30,63,10,"#8cbce8");
+  circle(63,36,5,"#fff");
+ }
+
+ if(action==="study"&&active){
+  drawBook(92,-175);
+ }
+ if(action==="sleep"&&active){
+  ctx.font="bold 19px Fredoka";ctx.fillStyle="#8cb5df";
+  ctx.fillText("z",62,-170);
+  ctx.font="bold 25px Fredoka";ctx.fillText("Z",79,-191);
+ }
+
+ ctx.restore();
+}
+
+function drawBow(x,y){
+ ellipse(x-10,y,11,8,"#f4a9c9");
+ ellipse(x+10,y,11,8,"#f4a9c9");
+ circle(x,y,5,"#fff");
+}
+function drawHeart(x,y,s,color){
+ ctx.save();ctx.translate(x,y);ctx.scale(s,s);
+ ctx.fillStyle=color;ctx.beginPath();
+ ctx.moveTo(0,8);ctx.bezierCurveTo(-34,-12,-18,-32,0,-15);
+ ctx.bezierCurveTo(18,-32,34,-12,0,8);
+ ctx.fill();ctx.restore();
+}
+function drawBook(x,y){
+ ctx.save();ctx.translate(x,y);
+ roundedRect(-17,-13,34,25,4,"#fff");
+ line(0,-10,0,10,"#9bcdf5",2);
+ ctx.restore();
+}
+
+function spawnParticles(){
+ for(let i=0;i<22;i++){
+  particles.push({
+   x:Math.random()*400-200,
+   y:Math.random()*-300-80,
+   speed:1+Math.random()*2,
+   size:2+Math.random()*4,
+   life:1,
+   color:Math.random()>.5?"#fff":"#f8bdd6"
+  });
+ }
+}
+function drawParticles(){
+ for(let i=particles.length-1;i>=0;i--){
+  const p=particles[i];
+  p.y+=p.speed;p.life-=.008;
+  ctx.globalAlpha=Math.max(0,p.life);
+  circle(p.x,p.y,p.size,p.color);
+  ctx.globalAlpha=1;
+  if(p.life<=0||p.y>280)particles.splice(i,1);
+ }
+}
+
+function resize(){
+ const rect=canvas.getBoundingClientRect();
+ DPR=Math.min(window.devicePixelRatio||1,2);
+ W=rect.width;H=rect.height;
+ canvas.width=Math.round(W*DPR);
+ canvas.height=Math.round(H*DPR);
+ ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+new ResizeObserver(resize).observe(canvas);
+resize();
+
+function animate(){
+ requestAnimationFrame(animate);
+ time+=.016;
+ ctx.clearRect(0,0,W,H);
+
+ const scale=Math.min(W/400,H/500);
+ ctx.save();
+ ctx.translate(W/2,H/2+15);
+ ctx.scale(scale,scale);
+
+ const gradient=ctx.createRadialGradient(0,0,15,0,0,190);
+ gradient.addColorStop(0,"#ffffffa0");
+ gradient.addColorStop(1,"#ffffff00");
+ ctx.fillStyle=gradient;
+ ctx.beginPath();ctx.arc(0,0,190,0,Math.PI*2);ctx.fill();
+
+ for(let i=0;i<7;i++){
+  const a=time*.25+i*Math.PI*2/7;
+  const x=Math.cos(a)*155,y=Math.sin(a)*170;
+  ctx.globalAlpha=.3+Math.sin(time*2+i)*.2;
+  ctx.fillStyle="#8ab8e5";
+  ctx.font="17px sans-serif";
+  ctx.fillText(i%2?"✧":"✦",x,y);
+ }
+ ctx.globalAlpha=1;
+
+ drawParticles();
+ drawCharacter();
+ ctx.restore();
+
+ if(action==="dance"&&performance.now()<actionUntil&&particles.length<10)spawnParticles();
+ if(performance.now()>actionUntil&&action!=="idle"){
+  action="idle";
+ }
+}
+
+animate();
+
+canvas.addEventListener("click",()=>{
+ actionDo("wave");
+});
+canvas.addEventListener("pointermove",e=>{
+ const rect=canvas.getBoundingClientRect();
+ pointer.x=e.clientX-rect.left;
+ pointer.y=e.clientY-rect.top;
+ pointer.active=true;
+});
+canvas.addEventListener("pointerleave",()=>pointer.active=false);
+
+window.addEventListener("keydown",e=>{
+ if(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA")return;
+ const keys={
+  "1":"wave","2":"dance","3":"jump","4":"shy",
+  "5":"laugh","6":"study","7":"sleep","8":"heart"
+ };
+ if(keys[e.key])actionDo(keys[e.key]);
+});
+
+document.getElementById("year").textContent=new Date().getFullYear();
+updateStats();
+log("character engine loaded.");
+log("canvas rendering initialized.");
+log("nurrani is ready to make questionable decisions.");
+
+Object.assign(messages, {
+  wave: [
+    "WOI HALOOO!! akhirnya ada yang nengok 😭",
+    "HAIII! sini tos dulu ✋",
+    "Aku online, tugas belum tentu.",
+    "Kamu datang juga. Kukira cuma dosen yang suka muncul tiba-tiba."
+  ],
+  dance: [
+    "DOSEN: jangan berisik. AKU: DJ MODE ON.",
+    "Kalau nilai bisa naik karena joget, aku sudah cumlaude.",
+    "Kaki bergerak, IPK menyusul.",
+    "JANGAN DIREKAM. INI BUKAN KONTEN."
+  ],
+  jump: [
+    "YUHUUU! setinggi cita-cita, semoga bukan setinggi revisi.",
+    "GRAVITASI? KENALAN DULU.",
+    "WOOO— hampir nyenggol plafon."
+  ],
+  shy: [
+    "JANGAN LIHAT AKU PAS LAGI LOADING 😭",
+    "Ih apasih… benerin poni 17 kali.",
+    "Aku tidak salting. Ini cuma suhu prosesor."
+  ],
+  angry: [
+    "Siapa yang bilang deadline-nya dimajuin? SIAPA.",
+    "Aku baik-baik saja. *meletakkan laptop dengan dramatis*",
+    "HMPH. Bahkan printer pun ikut mengkhianati."
+  ],
+  laugh: [
+    "WKWKWK TOLONG, HUMORKU RECEH TAPI AKU BAHAGIA.",
+    "HAHA— bentar, napas dulu.",
+    "Itu lucu. Nilai tugasnya tetap belum lucu."
+  ],
+  study: [
+    "Bismillah fokus. Notifikasi, minggir dulu.",
+    "Satu paragraf lagi. (Sudah bilang ini dari 40 menit lalu.)",
+    "Otak: ayo belajar. Tangan: buka marketplace."
+  ],
+  sleep: [
+    "Lima menit lagi adalah satuan waktu paling bohong.",
+    "Zzz… kalau dicari bilang aku sedang maintenance.",
+    "Mimpi dapat A tanpa revisi. Indah sekali."
+  ],
+  heart: [
+    "Nih hati. Jangan dipakai bayar UKT ya.",
+    "Kamu keren. Iya, kamu. Jangan pura-pura nggak baca.",
+    "Semoga harimu nggak seribet kabel kusut ♡"
+  ],
+  pet: [
+    "HEHEHE KEPALAKU BUKAN TOMBOL LIFT 😭",
+    "LAGI DONG, rambutku jadi punya plot twist.",
+    "Aku merasa dihargai sebagai makhluk digital."
+  ],
+  cookie: [
+    "COOKIE??? INI BARU BENEFIT ORGANISASI.",
+    "Snack dulu, baru pura-pura ngerti rangkaian.",
+    "Kue diterima. Kritik membangun ditunda."
+  ],
+  compliment: [
+    "JANGAN GITU, NANTI AKU GE-ER SAMPAI SEMESTER DEPAN.",
+    "Makasih!! aku simpan di folder hati, bukan recycle bin.",
+    "Aduh, jadi semangat. Siapa yang kasih vitamin pujian?"
+  ],
+  gift: [
+    "HADIAH?! semoga bukan tugas kelompok tambahan.",
+    "UNBOXING TIME!! *musik dramatis*",
+    "Aku akan menjaga ini. Kecuali kalau isinya deadline."
+  ],
+  panic: [
+    "AAAA DEADLINE TERDETEKSI. MODE KELINCI TERKEJUT.",
+    "Laptop panas, aku ikut panas.",
+    "TENANG. PANIK SECARA TERSTRUKTUR."
+  ],
+  slay: [
+    "MINGGIR DULU, MAHASISWI MAU LEWAT 💅",
+    "Outfit: 10/10. Kesiapan: kita rahasiakan.",
+    "Serving looks, bukan serving laporan."
+  ],
+  bruh: [
+    "BRUH. Bahkan aku nggak punya kata-kata.",
+    "Itu barusan kejadian beneran? Oke.",
+    "Aku butuh reboot dan sepotong martabak."
+  ]
+});
+
+const extraButtons = [
+  ["panic", "🚨 Deadline panic"],
+  ["slay", "💅 Slay mode"],
+  ["bruh", "🫠 Bruh moment"],
+  ["surprise", "🎲 CHAOS ROULETTE"]
+];
+
+const actionContainer = document.getElementById("actions");
+
+extraButtons.forEach(([actionName, label]) => {
+  const button = document.createElement("button");
+  button.className = "btn";
+  button.textContent = label;
+
+  button.addEventListener("click", () => {
+    if (actionName === "surprise") {
+      const randomActions = [
+        "dance", "jump", "shy", "laugh",
+        "panic", "slay", "bruh", "heart", "spin"
+      ];
+
+      const random = randomActions[
+        Math.floor(Math.random() * randomActions.length)
+      ];
+
+      actionDo(random);
+      notify("🎲 CHAOS ROULETTE: " + random.toUpperCase());
+      return;
+    }
+
+    actionDo(actionName);
+  });
+
+  actionContainer.appendChild(button);
+});
+
+const originalActionDo = actionDo;
+
+actionDo = function(type) {
+  if (type === "panic") {
+    mood = "Panicking";
+    energy = Math.max(0, energy - 3);
+  }
+
+  if (type === "slay") {
+    mood = "Gorgeous";
+  }
+
+  if (type === "bruh") {
+    mood = "Confused";
+  }
+
+  originalActionDo(type);
+
+  if (type === "panic") {
+    say("🚨 " + randomMessage("panic"));
+  }
+
+  if (type === "slay") {
+    say(randomMessage("slay"));
+  }
+
+  if (type === "bruh") {
+    say(randomMessage("bruh"));
+  }
+
+  updateStats();
+};
+
+const randomThoughts = [
+  "Nurrani sedang memikirkan hidup. Dan camilan.",
+  "Fun fact: kabel kusut selalu muncul saat dibutuhkan.",
+  "Ada yang tahu charger-ku? Ini bukan bercanda.",
+  "Status: terlihat sibuk, sedang memilih lagu.",
+  "Kalau ide bisa ditukar uang, aku sudah beli pulau kecil.",
+  "Aku tadi mau ngapain ya? Oh iya, lupa.",
+  "Apakah ikan pernah haus? ...sudahlah.",
+  "Seseorang tolong jelaskan kenapa tugas selalu berkembang biak.",
+  "Aku punya rencana besar. Tinggal eksekusi. Tinggal.",
+  "404: motivasi tidak ditemukan."
+];
+
+let nextThought = Date.now() + 8000;
+
+setInterval(() => {
+  if (action !== "idle") return;
+  if (Date.now() < nextThought) return;
+
+  say(
+    randomThoughts[
+      Math.floor(Math.random() * randomThoughts.length)
+    ]
+  );
+
+  nextThought = Date.now() + 9000 + Math.random() * 9000;
+}, 1000);
+
+let secretClicks = 0;
+
+canvas.addEventListener("click", () => {
+  secretClicks++;
+
+  if (secretClicks === 5) {
+    say("KAMU UDAH KLIK AKU 5 KALI. ADA MAKSUD TERTENTU? 😭");
+    notify("SECRET EVENT UNLOCKED");
+  }
+
+  if (secretClicks === 10) {
+    say("OKE, AKU MULAI CURIGA KAMU NGGAK PUNYA KERJAAN.");
+    notify("ACHIEVEMENT: PROFESSIONAL CLICKER");
+    secretClicks = 0;
+  }
+});
+
+window.addEventListener("keydown", (event) => {
+  if (event.target.tagName === "INPUT") return;
+
+  if (event.key.toLowerCase() === "n") {
+    say("N IS FOR NURRANI. ALSO N FOR: NO MORE TUGAS PLS.");
+    notify("SECRET NURRANI MODE ♡");
+  }
+
+  if (event.key.toLowerCase() === "m") {
+    say("M IS FOR MAHASISWI. M IS ALSO FOR MANA UANG KAS.");
+    notify("MAHASISWI MOMENT");
+  }
+
+  if (event.key === " ") {
+    event.preventDefault();
+
+    const random = [
+      "dance", "jump", "laugh",
+      "panic", "slay", "bruh"
+    ];
+
+    actionDo(random[Math.floor(Math.random() * random.length)]);
+  }
+});
+
+const randomNotifications = [
+  "Nurrani.exe masih bertahan.",
+  "Sistem mendeteksi kebutuhan matcha.",
+  "Ada ide baru. Waduh.",
+  "Produktivitas sedang dicari.",
+  "Mood: ingin libur.",
+  "Peringatan: terlalu banyak mikir."
+];
+
+setInterval(() => {
+  if (Math.random() > 0.65) {
+    notify(
+      randomNotifications[
+        Math.floor(Math.random() * randomNotifications.length)
+      ]
+    );
+  }
+}, 18000);
+
+log("chaos module loaded.");
+log("mahasiswi.exe is questioning reality.");
+log("warning: matcha dependency detected.");
+log("achievement unlocked: masih hidup sampai sekarang.");
+
+document.querySelector(".hero-copy p").innerHTML =
+  'Mahasiswi biasa dengan Isi kepala: 37 ide, 67 tab Chrome, ' +
+  'dan satu pertanyaan abadi: <strong>“IPK AMAN GA YA?”</strong>.';
+
+document.querySelector(".section-head p").textContent =
+  "Pencet tombolnya. Kalau dia tiba-tiba mempertanyakan hidup, itu fitur.";
+</script>
+</body>
+</html>
